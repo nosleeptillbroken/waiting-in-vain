@@ -24,8 +24,14 @@ public class GameTile : MonoBehaviour {
         gameObject.name = cell.coordinates.X.ToString() + "," + cell.coordinates.Y.ToString() + "," + cell.coordinates.Z.ToString();
 
         compoundCollider = transform.Find("Collision").gameObject;
-        compoundCollider.transform.localScale = new Vector3(HexMetrics.outerRadius, 1f, HexMetrics.outerRadius);
-        compoundCollider.transform.position = new Vector3(compoundCollider.transform.position.x, cell.Elevation - 0.5f, compoundCollider.transform.position.z);
+        UpdateCollider();
+    }
+
+    public void UpdateCollider()
+    {
+        float tileHeight = HexMetrics.elevationStep * 6f; // hardcoded - fix later
+        compoundCollider.transform.localScale = new Vector3(HexMetrics.outerRadius, tileHeight, HexMetrics.outerRadius);
+        compoundCollider.transform.position = new Vector3(compoundCollider.transform.position.x, transform.position.y - tileHeight/2, compoundCollider.transform.position.z);
         compoundCollider.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
