@@ -3,6 +3,7 @@
 [System.Serializable]
 public struct HexCoordinates
 {
+
     [SerializeField]
     private int x, z;
 
@@ -21,7 +22,7 @@ public struct HexCoordinates
             return z;
         }
     }
-    
+
     public int Y
     {
         get
@@ -34,17 +35,6 @@ public struct HexCoordinates
     {
         this.x = x;
         this.z = z;
-    }
-
-    public override string ToString()
-    {
-        return "(" +
-            X.ToString() + ", " + Y.ToString() + ", " + Z.ToString() + ")";
-    }
-
-    public string ToStringOnSeparateLines()
-    {
-        return X.ToString() + "\n" + Y.ToString() + "\n" + Z.ToString();
     }
 
     public static HexCoordinates FromOffsetCoordinates(int x, int z)
@@ -84,4 +74,14 @@ public struct HexCoordinates
         return new HexCoordinates(iX, iZ);
     }
 
+    public override string ToString()
+    {
+        return "(" +
+        X.ToString() + ", " + Y.ToString() + ", " + Z.ToString() + ")";
+    }
+
+    public string ToStringOnSeparateLines()
+    {
+        return X.ToString() + "\n" + Y.ToString() + "\n" + Z.ToString();
+    }
 }

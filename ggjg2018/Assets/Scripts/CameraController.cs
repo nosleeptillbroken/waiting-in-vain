@@ -4,16 +4,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
     // Pan Properties
     [Header("Panning")]
     [Tooltip("Enables whether hovering the mouse near a screen edge pans the camera in that direction.")]
     public bool enableEdgePanning = true;
     [Tooltip("Distance from the edge of the screen before edge panning will occur.")]
-    public float edgePanThreshold = 16; // The number of px on each side of the screen that will count towards panning the screen
-    public float arrowPanSpeed = 32; // The speed at which the camera pans for the arrows
-    public float mousePanSpeed = 325; // The speed at which the camera pans for the mouse
+    public float edgePanThreshold = 16;
+    // The number of px on each side of the screen that will count towards panning the screen
+    public float arrowPanSpeed = 32;
+    // The speed at which the camera pans for the arrows
+    public float mousePanSpeed = 325;
+    // The speed at which the camera pans for the mouse
 
     [Tooltip("Enables camera restriction within a box defined by two points.")]
     public bool cameraBoundsRestriction = false;
@@ -25,8 +29,9 @@ public class CameraController : MonoBehaviour {
 
     public bool enableRotation = true;
     public float rotationSensitivity = 90;
-    public float rotationSpeed = 145; // The speed at which the camera rotates during zoom
-                                    //public float rotationThreshold = 8; // The threshold at which rotation stops. larger number = more narrow range of rotation
+    public float rotationSpeed = 145;
+    // The speed at which the camera rotates during zoom
+    //public float rotationThreshold = 8; // The threshold at which rotation stops. larger number = more narrow range of rotation
 
     // Zoom Properties
     [Header("Zoom")]
@@ -79,7 +84,7 @@ public class CameraController : MonoBehaviour {
 
         // Free movement w/ Middle Mouse Click
         // If middle mouse button is pressed
-        if(enableRotation == true && Input.GetButton("Rotate Camera"))
+        if (enableRotation == true && Input.GetButton("Rotate Camera"))
         {
             xDeg = transform.rotation.eulerAngles.x;
             yDeg = transform.rotation.eulerAngles.y;
@@ -90,7 +95,7 @@ public class CameraController : MonoBehaviour {
             freeRotate = false;
         }
 
-		// If freely rotating follow the change in mousePosition with camera rotation
+        // If freely rotating follow the change in mousePosition with camera rotation
         if (freeRotate)
         {
             xDeg -= deltaMouseY * Time.deltaTime * rotationSensitivity;
@@ -145,10 +150,10 @@ public class CameraController : MonoBehaviour {
             }
         }
 
-		// Get mouse scroll wheel input
+        // Get mouse scroll wheel input
         float scroll = Input.GetAxis("Zoom Camera");
-		// If scroll wheel moved zoom camera in relation
-		if(enableZoom == true && scroll != 0)
+        // If scroll wheel moved zoom camera in relation
+        if (enableZoom == true && scroll != 0)
         {
             zoom += zoomSensitivity * Time.deltaTime * -scroll;
         }
@@ -156,13 +161,13 @@ public class CameraController : MonoBehaviour {
 
     }
 
-	// LateUpdate is called at the end of every frame, after update
+    // LateUpdate is called at the end of every frame, after update
     void LateUpdate()
     {
         float zoomPercent = Mathf.Clamp(Time.deltaTime * zoomSpeed, 0.0f, 1.0f);
 		
-		// Adjust the zoom, rotation, y and z coordinates of the camera according to changes this frame
-		zoomLerp = Mathf.Lerp(zoomLerp, zoom, zoomPercent);
+        // Adjust the zoom, rotation, y and z coordinates of the camera according to changes this frame
+        zoomLerp = Mathf.Lerp(zoomLerp, zoom, zoomPercent);
         if (!freeRotate)
         {
             transform.rotation = Quaternion.Slerp(zoomedInRot, zoomedOutRot, zoomLerp);
@@ -173,8 +178,8 @@ public class CameraController : MonoBehaviour {
 
         transform.position = hpos;
 		
-		// Bound the camera position so it cannot fly away from the play area
-        if(cameraBoundsRestriction)
+        // Bound the camera position so it cannot fly away from the play area
+        if (cameraBoundsRestriction)
         {
             Vector3 clampPos;
             clampPos.x = Mathf.Clamp(hpos.x, minimumBounds.x, maximumBounds.x);

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-public enum HexDirection
+﻿public enum HexDirection
 {
     NE,
     E,
     SE,
     SW,
     W,
-    NW,
-    Count
+    NW
 }
 
 public static class HexDirectionExtensions
 {
+
     public static HexDirection Opposite(this HexDirection direction)
     {
         return (int)direction < 3 ? (direction + 3) : (direction - 3);
