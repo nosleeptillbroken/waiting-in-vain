@@ -62,10 +62,10 @@ public class HexGrid : MonoBehaviour
         switch (player)
         {
             case 0:
-                return new HexCoordinates((-width/2)-2, height-2);
+                return new HexCoordinates((-width/2)+2, height-2);
                 break;
             case 1:
-                return new HexCoordinates(width/2, height-2);
+                return new HexCoordinates((width/2), height-2);
                 break;
             case 2:
                 return new HexCoordinates(1, 1);
