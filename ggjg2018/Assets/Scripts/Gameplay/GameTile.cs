@@ -25,8 +25,8 @@ public class GameTile : MonoBehaviour {
 
         compoundCollider = transform.Find("Collision").gameObject;
         compoundCollider.transform.localScale = new Vector3(HexMetrics.outerRadius, 1f, HexMetrics.outerRadius);
-        compoundCollider.transform.localPosition = new Vector3(compoundCollider.transform.position.x, cell.Elevation - 0.5f, compoundCollider.transform.position.z);
-        compoundCollider.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        compoundCollider.transform.position = new Vector3(compoundCollider.transform.position.x, cell.Elevation - 0.5f, compoundCollider.transform.position.z);
+        compoundCollider.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
 	void Update () 
