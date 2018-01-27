@@ -3,14 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameTile : MonoBehaviour {
-    
+
+    int owner = -1; // unowned
+    public int Owner
+    {
+        get
+        {
+            return owner;
+        }
+        set
+        {
+            owner = (value < 4 && value >= 0) ? value : -1;
+        }
+    }
+
     bool isGenerated = false;
 
     HexCell cell = null;
 
     GameObject compoundCollider = null;
 
-    void OnGenerated (HexGrid grid)
+    public static Color GetPlayerColor(int player)
+    {
+        switch (player)
+        {
+            case 0:
+                return Color.red;
+                break;
+            case 1:
+                return Color.blue;
+                break;
+            case 2:
+                return Color.yellow;
+                break;
+            case 3:
+                return Color.green;
+                break;
+            default:
+                return Color.white;
+                break;
+        }
+    }
+
+    public void OnGenerated (HexGrid grid)
     {
         cell = grid.GetCell(transform.position);
         if (cell == null)
@@ -27,6 +62,22 @@ public class GameTile : MonoBehaviour {
         UpdateCollider();
     }
 
+    public void OnSpawnPointSet (HexGrid grid, int player)
+    {
+        cell.Elevation = 0;
+        Owner = player;
+        cell.color = GetPlayerColor(Owner);
+
+        foreach (HexDirection d in HexDirection.GetValues(typeof(HexDirection)))
+        {                    
+            HexCell n = cell.GetNeighbor(d);
+            if (n != null)
+            {
+                n.Elevation = 0;
+            }
+        }
+    }
+
     public void UpdateCollider()
     {
         float tileHeight = HexMetrics.elevationStep * 6f; // hardcoded - fix later
@@ -39,7 +90,7 @@ public class GameTile : MonoBehaviour {
     {
         if (isGenerated)
         {
-
+            cell.color = GetPlayerColor(Owner);
         }
 	}
 

@@ -17,31 +17,11 @@ public class HexGrid : MonoBehaviour
     Canvas gridCanvas;
     HexMesh hexMesh;
 
-    void Awake()
-    {
-        gridCanvas = GetComponentInChildren<Canvas>();
-        hexMesh = GetComponentInChildren<HexMesh>();
-
-        cells = new HexCell[height * width];
-
-        for (int z = 0, i = 0; z < height; z++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                CreateCell(x, z, i++);
-            }
-        }
-
-        GetCell(GetPlayerStartCoordinate(0)).color = Color.red;
-        GetCell(GetPlayerStartCoordinate(1)).color = Color.blue;
-        GetCell(GetPlayerStartCoordinate(2)).color = Color.yellow;
-        GetCell(GetPlayerStartCoordinate(3)).color = Color.green;
-
-    }
-
     void Start()
     {
-        hexMesh.Triangulate(cells);
+        Initialize();
+        GenerateLevel();
+        Refresh();
     }
 
     public HexCell GetCell(Vector3 position)
@@ -85,6 +65,46 @@ public class HexGrid : MonoBehaviour
         hexMesh.Triangulate(cells);
     }
 
+    void Initialize()
+    {
+        gridCanvas = GetComponentInChildren<Canvas>();
+        hexMesh = GetComponentInChildren<HexMesh>();
+
+        cells = new HexCell[height * width];
+
+        for (int z = 0, i = 0; z < height; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                CreateCell(x, z, i++);
+            }
+        }
+    }
+
+    void GenerateLevel()
+    {
+        for (int z = 0, i = 0; z < height; z++)
+        {
+            for (int x = 0; x < width; x++, i++)
+            {
+                float iX = ((float)x + Random.Range(0,256)) / ((float)width);
+                float iZ = ((float)z + Random.Range(0,256)) / ((float)height);
+
+                cells[i].Elevation = Mathf.RoundToInt(Mathf.PerlinNoise(iX, iZ));
+
+                GameTile gameTile = cells[i].GetComponent<GameTile>();
+                gameTile.OnGenerated(this);
+            }
+        }
+
+        for (int p = 0; p < 4; p++)
+        {
+            HexCell spawnCell = GetCell(GetPlayerStartCoordinate(p));
+            GameTile gameTile = spawnCell.GetComponent<GameTile>();
+            gameTile.OnSpawnPointSet(this, p);
+        }
+    }
+
     void CreateCell(int x, int z, int i)
     {
         Vector3 position;
@@ -97,7 +117,6 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
         cell.color = defaultColor;
-        cell.SendMessage("OnGenerated", this, SendMessageOptions.DontRequireReceiver);
 
         if (x > 0)
         {
