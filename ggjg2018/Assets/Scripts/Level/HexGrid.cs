@@ -90,7 +90,7 @@ public class HexGrid : MonoBehaviour
                 float iX = ((float)x + Random.Range(0,256)) / ((float)width);
                 float iZ = ((float)z + Random.Range(0,256)) / ((float)height);
 
-                cells[i].Elevation = Mathf.RoundToInt(Mathf.PerlinNoise(iX, iZ));
+                cells[i].Elevation = Mathf.RoundToInt(Mathf.PerlinNoise(iX, iZ) - 0.15f);
 
                 GameTile gameTile = cells[i].GetComponent<GameTile>();
                 gameTile.OnGenerated(this);

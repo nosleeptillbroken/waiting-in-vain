@@ -20,10 +20,11 @@ public class GameTile : MonoBehaviour {
     bool isGenerated = false;
 
     HexCell cell = null;
+    HexGrid grid = null;
 
     GameObject compoundCollider = null;
 
-    public static Color GetPlayerColor(int player)
+    public Color GetPlayerColor(int player)
     {
         switch (player)
         {
@@ -40,13 +41,14 @@ public class GameTile : MonoBehaviour {
                 return Color.green;
                 break;
             default:
-                return Color.white;
+                return (grid != null) ? grid.defaultColor : Color.white;
                 break;
         }
     }
 
     public void OnGenerated (HexGrid grid)
     {
+        this.grid = grid;
         cell = grid.GetCell(transform.position);
         if (cell == null)
         {

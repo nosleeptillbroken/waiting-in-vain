@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors:
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0.019607844, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 15
   height: 15
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   cellPrefab: {fileID: 11422220, guid: 94c2312396697489abc866a188f80152, type: 2}
   cellLabelPrefab: {fileID: 11470134, guid: f68794ca03b6f4510b9a5bd6ee9ba2f4, type: 2}
 --- !u!4 &700945243
