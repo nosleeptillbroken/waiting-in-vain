@@ -31,6 +31,12 @@ public class HexGrid : MonoBehaviour
                 CreateCell(x, z, i++);
             }
         }
+
+        GetCell(GetPlayerStartCoordinate(0)).color = Color.red;
+        GetCell(GetPlayerStartCoordinate(1)).color = Color.blue;
+        GetCell(GetPlayerStartCoordinate(2)).color = Color.yellow;
+        GetCell(GetPlayerStartCoordinate(3)).color = Color.green;
+
     }
 
     void Start()
@@ -42,8 +48,36 @@ public class HexGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        return GetCell(coordinates);
+    }
+
+    public HexCell GetCell(HexCoordinates coordinates)
+    {
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
         return cells[index];
+    }
+
+    public HexCoordinates GetPlayerStartCoordinate(int player)
+    {
+        switch (player)
+        {
+            case 0:
+                return new HexCoordinates((-width/2)-2, height-2);
+                break;
+            case 1:
+                return new HexCoordinates(width/2, height-2);
+                break;
+            case 2:
+                return new HexCoordinates(1, 1);
+                break;
+            case 3:
+                return new HexCoordinates(width-2, 1);
+                break;
+            default:
+                Debug.LogError("Invalid player index (" + player.ToString() + ").", this);
+                return new HexCoordinates(0, 0);
+                break;
+        }
     }
 
     public void Refresh()

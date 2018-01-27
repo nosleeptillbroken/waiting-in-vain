@@ -1059,8 +1059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414a0fc06528949a0baff4f719b04a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 13
-  height: 13
+  width: 16
+  height: 16
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   cellPrefab: {fileID: 11422220, guid: 94c2312396697489abc866a188f80152, type: 2}
   cellLabelPrefab: {fileID: 11470134, guid: f68794ca03b6f4510b9a5bd6ee9ba2f4, type: 2}
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   mousePanSpeed: 325
   cameraBoundsRestriction: 1
   minimumBounds: {x: 0, y: 0, z: -50}
-  maximumBounds: {x: 200, y: 100, z: 150}
+  maximumBounds: {x: 200, y: 210, z: 150}
   enableRotation: 1
   rotationSensitivity: 15
   rotationSpeed: 90
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   zoomedInOrientation: {x: 0, y: 0, z: 0}
   zoomedOutOrientation: {x: 90, y: 0, z: 0}
   zoomedInHeight: 25
-  zoomedOutHeight: 100
+  zoomedOutHeight: 210
 --- !u!1 &995645594
 GameObject:
   m_ObjectHideFlags: 0
