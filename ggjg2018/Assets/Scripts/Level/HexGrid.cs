@@ -63,6 +63,7 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
         cell.color = defaultColor;
+        cell.SendMessage("OnGenerated", this, SendMessageOptions.DontRequireReceiver);
 
         if (x > 0)
         {
@@ -90,8 +91,7 @@ public class HexGrid : MonoBehaviour
 
         Text label = Instantiate<Text>(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
-        label.rectTransform.anchoredPosition =
-			new Vector2(position.x, position.z);
+        label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
         label.text = cell.coordinates.ToStringOnSeparateLines();
         cell.uiRect = label.rectTransform;
     }
