@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTile : MonoBehaviour
 {
-    public Color GetPlayerColor(int p)
+    public static Color GetPlayerColor(int p)
     {
         const float less = 5f / 16f;
         const float half = 0.5f;
@@ -12,7 +12,7 @@ public class GameTile : MonoBehaviour
         switch (p)
         {
             default:
-                return (grid != null) ? new Color(half, half, half) : Color.white;
+                return new Color(half, half, half);
                 break;
             case 0:
                 return new Color(half, less, less);
