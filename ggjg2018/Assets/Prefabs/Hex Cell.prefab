@@ -163,7 +163,7 @@ MonoBehaviour:
   - 0
   controllingPlayer: -1
   control: 0
-  tower: {fileID: 0}
+  tower: {fileID: 1199521770095748, guid: 9b4c6ab59b20d554fa4c25b0d46e7587, type: 2}
 --- !u!136 &136449390648952156
 CapsuleCollider:
   m_ObjectHideFlags: 1
