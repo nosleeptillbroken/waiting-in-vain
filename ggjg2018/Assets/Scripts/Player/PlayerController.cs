@@ -75,9 +75,6 @@ public class PlayerController : MonoBehaviour {
         horizontalAxis = player.GetAxis("MoveHorizontal");
     }
 
-    
-
-
     void ProcessInputs()
     {
 
@@ -158,6 +155,10 @@ public class PlayerController : MonoBehaviour {
             placementCooldown = Time.time + cooldownTime;
             currentTile.Tower = Instantiate(towerObj, currentCell.transform);
             currentPower++;
+            if (currentPower == maxPower)
+            {
+                gameManager.peakPower[gamePlayerId] = true; //This needs to change when we can remove towers.
+            }
         }
     }
 

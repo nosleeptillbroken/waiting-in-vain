@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     //External References.
     SettingsToken settings;
     HexGrid board;
+    public GameObject gameOverPanel;
+    private ResultsPanel resultsPanelScript;
+    public List<Text> totalTileText = new List<Text>();
+    public List<Text> totalPowerText = new List<Text>();
+    public List<PlayerController> players = new List<PlayerController>();
 
     //Timer variables.
     private float timerValue;
@@ -17,10 +24,13 @@ public class GameManager : MonoBehaviour
     Dictionary<string, GameTile> tileList = new Dictionary<string, GameTile>();
 
     //Totals Metrics.
-    private int[] towersPlaced = new int[4];
-    private int[] totalTiles = new int[4];
-    private bool[] peakPower = new bool[4];
+    private int[] towersPlaced = { 0, 0, 0, 0 };
+    private int[] totalTiles = { 0, 0, 0, 0 };
+    //public bool[] peakPower = new bool[4];
+    public List<bool> peakPower = new List<bool>();
     public float gameOverCountdown = 10.0f;
+
+    private Coroutine finalCountdown = null;
 
     void Start ()
     {
@@ -29,10 +39,20 @@ public class GameManager : MonoBehaviour
 
     void Update ()
     {
-	    bool gameOver = peakPower[0] && peakPower[1] && peakPower[2] && peakPower[3];
-        if (gameOver)
+        bool gameOver = players.Count > 0;
+        foreach(bool thing in peakPower)
         {
-            StartCoroutine("GameOverTimeDawg");
+            gameOver = gameOver && thing;
+        }
+
+        if (gameOver && finalCountdown == null)
+        {
+            finalCountdown = StartCoroutine("GameOverTimeDawg");
+        }
+        else if (!gameOver && finalCountdown != null)
+        {
+            StopCoroutine(finalCountdown);
+            finalCountdown = null;
         }
     }
 
@@ -40,6 +60,17 @@ public class GameManager : MonoBehaviour
     {
         settings = GameObject.FindGameObjectWithTag("Settings").GetComponent<SettingsToken>();
         board = GameObject.FindGameObjectWithTag("Board").GetComponent<HexGrid>();
+
+        resultsPanelScript = gameOverPanel.GetComponent<ResultsPanel>();
+        gameOverPanel.SetActive(false);
+
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject playerObject in playerObjects)
+        {
+            players.Add(playerObject.GetComponent<PlayerController>());
+            peakPower.Add(false);
+        }
+
         for (int i = 0; i < 4; i++)
         {
             towersPlaced[i] = 0;
@@ -92,9 +123,34 @@ public class GameManager : MonoBehaviour
     IEnumerator GameOverTimeDawg()
     {
         yield return new WaitForSeconds(gameOverCountdown);
-        settings.towersPlaced = towersPlaced;
-        settings.peakPower = peakPower;
-        settings.totalTiles = totalTiles;
+        
+        gameOverPanel.SetActive(true);
+         for (int i = 0; i < 4; i++)
+         {
+             totalTileText[i].text = totalTiles[i].ToString();
+             totalPowerText[i].text = towersPlaced[i].ToString();
+         }
+
+        StartCoroutine(WaitForTimeThenLoop(gameOverCountdown));
+
+        //int highestScore = 0;
+        //
+        //int winner = 0;
+        //for(int i = 0; i < totalTiles.Length; i++)
+        //{
+        //    highestScore = highestScore < totalTiles[i] ? totalTiles[i] : highestScore;
+        //    winner = highestScore == totalTiles[i] ? i : winner;
+        //
+        //    resultsPanelScript.SetPlayerValues(i, totalTiles[i], towersPlaced[i]);
+        //}
+        //resultsPanelScript.SetWinningPlayer(winner);
+    }
+
+    IEnumerator WaitForTimeThenLoop(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        SceneManager.LoadScene(1);
     }
 
 

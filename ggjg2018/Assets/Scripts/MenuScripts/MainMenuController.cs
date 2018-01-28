@@ -7,6 +7,8 @@ public class MainMenuController : MonoBehaviour {
 
     [SerializeField] private float scrollSpeed = 300;
 
+    private Rewired.Player player { get { return ControllerAssigner.GetRewiredPlayer(0); } }
+
     enum Transition { None, SplashToMenu, MenuToSplash, MenuToSettings, SettingsToMenu }
     [SerializeField] private RectTransform[] panels;
     private int currentPanel = 0;
@@ -22,7 +24,7 @@ public class MainMenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(currentPanel == 0 && Input.GetKeyDown(KeyCode.A))
+        if (currentPanel == 0 && player.GetButtonDown("ActionA"))
         {
             currentTransition = Transition.SplashToMenu;
             panels[1].anchoredPosition = new Vector2(0, Screen.height);
