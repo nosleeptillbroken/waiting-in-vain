@@ -137,9 +137,6 @@ public class GameTile : MonoBehaviour
 
         isGenerated = true;
         gameObject.name = cell.coordinates.X.ToString() + "," + cell.coordinates.Y.ToString() + "," + cell.coordinates.Z.ToString();
-
-        compoundCollider = transform.Find("Collision").gameObject;
-        UpdateCollider();
     }
 
     public void OnSpawnPointSet(HexGrid grid, int player)
@@ -156,14 +153,6 @@ public class GameTile : MonoBehaviour
                 n.Elevation = 0;
             }
         }
-    }
-
-    public void UpdateCollider()
-    {
-        float tileHeight = HexMetrics.elevationStep * 6f; // hardcoded - fix later
-        compoundCollider.transform.localScale = new Vector3(HexMetrics.outerRadius, tileHeight, HexMetrics.outerRadius);
-        compoundCollider.transform.position = new Vector3(compoundCollider.transform.position.x, transform.position.y - tileHeight / 2, compoundCollider.transform.position.z);
-        compoundCollider.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
     void Update()
@@ -221,6 +210,8 @@ public class GameTile : MonoBehaviour
                     ControllingPlayer = -1;
                 }
             }
+
+            influence = new float[4]{0f,0f,0f,0f};
         }
     }
 
@@ -243,26 +234,22 @@ public class GameTile : MonoBehaviour
 
         adjustedInfluence = Mathf.Lerp(influencer.influence, 0f, invDist);
 
-        return adjustedInfluence;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Added influencer " + other.gameObject.name + " to object " + gameObject.name);
-        Influencer influencer = other.gameObject.GetComponent<Influencer>();
-        if (influencer != null)
+        if (influencer.CanInfluence(this))
         {
-            influence[influencer.owner] += GetInfluenceFromInfluencer(influencer);
+            return adjustedInfluence;
+        }
+        else
+        {
+            return 0f;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    public void Influence(Influencer inf)
     {
-        Debug.Log("Removed influencer " + other.gameObject.name + " to object " + gameObject.name);
-        Influencer influencer = other.gameObject.GetComponent<Influencer>();
+        Influencer influencer = inf.gameObject.GetComponent<Influencer>();
         if (influencer != null)
         {
-            influence[influencer.owner] -= GetInfluenceFromInfluencer(influencer);
+            influence[influencer.owner] += GetInfluenceFromInfluencer(influencer);
         }
     }
 }
