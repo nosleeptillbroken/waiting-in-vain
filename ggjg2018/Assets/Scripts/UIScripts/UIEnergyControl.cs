@@ -21,7 +21,9 @@ public class UIEnergyControl : MonoBehaviour
 
     void Update()
     {
+        energyText.text = usedEnergy + " / " + maxEnergy;
         energyBar.maxValue = maxEnergy;
+        energyBar.value = usedEnergy;
 
         if (Input.GetKeyDown("]"))
         {

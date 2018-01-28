@@ -48,10 +48,12 @@ public class PlayerController : MonoBehaviour {
     private bool isVerticalAxisInUse = false;
     private bool isHorizontalAxisInUse = false;
 
+    public GameObject playerHudObject = null;
+
     void Start ()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        currentPower = 1;
+        currentPower = 0;
 
         if (hexGridObject != null)
         {
@@ -192,6 +194,26 @@ public class PlayerController : MonoBehaviour {
         GetInputs();
         ProcessInputs();
 
+        if (playerHudObject != null)
+        {
+            UpdateHUD();
+        }
+
         maxPower = (int)(gameManager.GetTotalTiles(gamePlayerId) / powerDenom) + basePower;
 	}
+
+    void UpdateHUD()
+    {
+        UICooldownControl cooldown = playerHudObject.GetComponent<UICooldownControl>();
+        UIEnergyControl energy = playerHudObject.GetComponent<UIEnergyControl>();
+        UIPlayerIconControl playerIcon = playerHudObject.GetComponent<UIPlayerIconControl>();
+        UIBuildOptionsControl buildOptions = playerHudObject.GetComponent<UIBuildOptionsControl>();
+
+        cooldown.cooldownTime = cooldownTime;
+
+        energy.maxEnergy = maxPower;
+        energy.usedEnergy = currentPower;
+
+        buildOptions.hasTower = currentCell.GetComponent<GameTile>().Tower != null;
+    }
 }
