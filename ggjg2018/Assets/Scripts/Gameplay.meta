@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ggjg2018/Assets/Scripts/Gameplay.meta
 guid: 8835413670c031b44a79f6b79975e0c0
 folderAsset: yes
 timeCreated: 1517075099
+=======
+guid: 8cc3ce5f6d77bda468f1cb5ddc55fef2
+folderAsset: yes
+timeCreated: 1517078409
+>>>>>>> feature/MainMenu:ggjg2018/Assets/Scripts/GameManagement.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
