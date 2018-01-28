@@ -28,4 +28,10 @@ public class SelectOnInput : MonoBehaviour {
     {
         buttonSelected = false;
     }
+    
+    public void SettingsButtonFocus()
+    {
+        eventSystem.SetSelectedGameObject(selectedObject);
+        buttonSelected = true;
+    }
 }
