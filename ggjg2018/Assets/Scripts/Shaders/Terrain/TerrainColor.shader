@@ -11,7 +11,7 @@
 		_ShinyPosSize("Shiny Scale", Float) = 1.0
 
 		_CloudTex ("Cloud Texture", 2D) = "grey" {}
-		_CloudCutoff("Cloud Cutoff", Range(0,1)) = 0.0
+		_CloudCutoff("Cloud Cutoff", Range(0,1)) = 1.0
 	}
 	Category
 	{
