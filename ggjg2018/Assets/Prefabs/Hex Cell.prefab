@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11422220}
   - component: {fileID: 114699084908181492}
   - component: {fileID: 136449390648952156}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Hex Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 4987853024865898}
   - component: {fileID: 33715154702480960}
   - component: {fileID: 23950310909200418}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: -1
   MaxControl: 256
+  capturePrefab: {fileID: 1846414700972030, guid: c99bb98bbacaf3b4fb28477efd5ea626,
+    type: 2}
   influence:
   - 0
   - 0
@@ -161,6 +163,7 @@ MonoBehaviour:
   - 0
   controllingPlayer: -1
   control: 0
+  tower: {fileID: 0}
 --- !u!136 &136449390648952156
 CapsuleCollider:
   m_ObjectHideFlags: 1

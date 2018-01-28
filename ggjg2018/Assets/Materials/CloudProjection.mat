@@ -6,14 +6,13 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Control Material
-  m_Shader: {fileID: 4800000, guid: 03f6d99145f665048bd9f344370c8004, type: 3}
-  m_ShaderKeywords: _ALPHA_CUTOFF _SHINY_RAMP _SHINY_RAMP_COLOR_MULT _SHINY_RAMP_OFFSET
-    _SHINY_RAMP_WORLD_POS
+  m_Name: CloudProjection
+  m_Shader: {fileID: 4800000, guid: 23facd1e4e687444682c8fe1c7418b7f, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1995
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -21,10 +20,6 @@ Material:
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CloudTex:
-        m_Texture: {fileID: 2800000, guid: 6d77f15b95753954f9f1e10ba815955f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8c49e7e09803b3e4ca3af9bba76bf8ca, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -59,13 +54,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ShinyRamp:
-        m_Texture: {fileID: 2800000, guid: 02cb359c542ed34408cac63f4c6d1b81, type: 3}
+    - _ShadowTex:
+        m_Texture: {fileID: 2800000, guid: 6d77f15b95753954f9f1e10ba815955f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Amount: 0.5
     - _BumpScale: 1
-    - _CloudCutoff: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -76,8 +71,6 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ShinyPosSize: 0.001
-    - _ShinySpeed: 10
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -85,6 +78,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorMult: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 0.49803922}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShinyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ProjScale: {r: 3, g: 3, b: -0.3, a: 0.4}

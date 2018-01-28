@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/VideoSplash.unity
     guid: e14475a37887b504d876075a36d7cf12
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/TitleMenu.unity
     guid: 840f2b9c9b8d8a84b96e2377195b8987
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Game.unity
     guid: 4a7fbbcd4c0b92a479993cb143835e0a

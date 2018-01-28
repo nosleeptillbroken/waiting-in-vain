@@ -46,6 +46,7 @@ public class GameTile : MonoBehaviour
 
     // control needed to become owner of the tile
     public float MaxControl = 256f;
+    public GameObject capturePrefab;
 
     // current influence values for each player. influence determines the increase or decrease in control depending on the controlling player
     [SerializeField] float[] influence = new float[4]{0f,0f,0f,0f};
@@ -232,7 +233,12 @@ public class GameTile : MonoBehaviour
                 if (control >= MaxControl)
                 {
                     control = MaxControl;
+                    if(controllingPlayer != Owner)
+                    {
+                        Instantiate(capturePrefab, this.transform);   
+                    }
                     Owner = ControllingPlayer;
+                    
                 }
                 else if (control <= 0)
                 {

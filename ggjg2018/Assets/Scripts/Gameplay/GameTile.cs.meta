@@ -1,16 +1,14 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:ggjg2018/Assets/Scripts/Gameplay/GameTile.cs.meta
 guid: d4851539fa18be24c9c097f2fe88477d
-timeCreated: 1517075205
-=======
-guid: 6e52736c4e162d248a547153d12f3d9b
-timeCreated: 1517080572
->>>>>>> feature/MainMenu:ggjg2018/Assets/Scripts/GameManagement/GameManager.cs.meta
+timeCreated: 1517164112
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - capturePrefab: {fileID: 1846414700972030, guid: c99bb98bbacaf3b4fb28477efd5ea626,
+      type: 2}
+  - tower: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
