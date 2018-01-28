@@ -24,8 +24,8 @@ public class UIBuildOptionsControl : MonoBehaviour
         }   
         else
         {
-            buildOption1.text = "X: Build Area Tower";
-            buildOption2.text = "Y: Build Directed Tower";
+            buildOption1.text = "A: Build Area Tower";
+            buildOption2.text = "B: Build Directed Tower";
         } 
     }
 }
