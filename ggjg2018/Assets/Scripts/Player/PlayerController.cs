@@ -64,42 +64,6 @@ public class PlayerController : MonoBehaviour {
 
         verticalAxis = player.GetAxis("MoveVertical");
         horizontalAxis = player.GetAxis("MoveHorizontal");
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            verticalAxis += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            verticalAxis -= 1;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            horizontalAxis += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            horizontalAxis -= 1;
-        }
-
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            verticalAxis -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            verticalAxis += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            horizontalAxis -= 1;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            horizontalAxis += 1;
-        }
-
-        //Debug.Log("(" + horizontalAxis + ", " + verticalAxis + ")");
     }
 
     
@@ -163,20 +127,7 @@ public class PlayerController : MonoBehaviour {
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
-
-        
-
-        if (horizontalAxis == 0)
-            isHorizontalAxisInUse = false;
-
-        if (verticalAxis == 0)
-            isVerticalAxisInUse = false;
-       
-
     }
-
-
-    #region Movement Functions
 
     private void Move(HexDirection direction)
     {
@@ -189,49 +140,7 @@ public class PlayerController : MonoBehaviour {
         moveTime = Time.time + moveWait;
         Debug.Log(direction.ToString() + CurrentPosition);
     }
-
-    void MoveNE()
-    {
-        currentCell.color = prevColor;
-        currentCell = currentCell.GetNeighbor(HexDirection.NE) ?? currentCell;
-        prevColor = currentCell.color;
-        currentCell.color = tempColor;
-        hexGrid.Refresh();
-        Debug.Log(HexDirection.NE.ToString() + CurrentPosition);
-    }
-
-    void MoveNW()
-    {
-       // CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z + 1);
-        Debug.Log("Moving NW" + CurrentPosition);
-    }
-
-    void MoveW()
-    {
-       // CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z);
-        Debug.Log("Moving W" + CurrentPosition);
-    }
-
-    void MoveE()
-    {
-       // CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z);
-        Debug.Log("Moving E" + CurrentPosition);
-    }
-
-    void MoveSE()
-    {
-       // CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z - 1);
-        Debug.Log("Moving SE" + CurrentPosition);
-    }
-
-    void MoveSW()
-    {
-      //  CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y + 1, CurrentPosition.z - 1);
-        Debug.Log("Moving SW" + CurrentPosition);
-    }
-
-    #endregion
-
+    
     void PlaceTower()
     {
         //if (hasCooledDown)
