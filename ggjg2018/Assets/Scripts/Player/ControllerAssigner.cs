@@ -77,6 +77,7 @@ public class ControllerAssigner : MonoBehaviour {
 
         // Enable UI control for this Player now that he has joined
         rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Default");
+        rewiredPlayer.controllers.maps.SetMapsEnabled(true, "UI");
 
         Debug.Log("Added Rewired Player id " + rewiredPlayerId + " to game player " + gamePlayerId);
     }
@@ -86,7 +87,6 @@ public class ControllerAssigner : MonoBehaviour {
         return gamePlayerIdCounter++;
     }
 
-    // This class is used to map the Rewired Player Id to your game player id
     private class PlayerMap
     {
         public int rewiredPlayerId;

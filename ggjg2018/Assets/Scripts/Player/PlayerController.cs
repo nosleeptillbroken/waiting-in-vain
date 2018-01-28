@@ -6,20 +6,25 @@ using Rewired;
 public class PlayerController : MonoBehaviour {
 
     //Script is only used for player gameplay controlling. Create a new script for playerUIcontrolling
+    //You can toggle a control map using //  rewiredPlayer.controllers.maps.SetMapsEnabled([value], [control map]);
 
     public int gamePlayerId = 0;
 
     public GameObject hexGridObject;
     private HexGrid hexGrid;
 
+    //Timing variables
+    private float TotalCooldownTime = 3.0f;
+    private float currentCooldownTime = 0.0f;
+    private bool hasCooledDown = true;
 
-
-
+    public GameObject towerObj;
 
     //crucial player variables
     private Rewired.Player player { get { return ControllerAssigner.GetRewiredPlayer(gamePlayerId); } }
     public Vector3 CurrentPosition { get; private set; }
     public int TotalTiles { get; private set; }
+
 
     //input variables
     private bool isSelecting;
@@ -41,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 
         CurrentPosition = new Vector3(hexGrid.GetPlayerStartCoordinate(gamePlayerId).X, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Y, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Z);
         Debug.Log("Current Position for player " + gamePlayerId + ": " +  CurrentPosition);
+
+       
         
 	}
 
@@ -51,8 +58,17 @@ public class PlayerController : MonoBehaviour {
         horizontalAxis = player.GetAxis("MoveHorizontal");
     }
 
+    
+
+
     void ProcessInputs()
     {
+
+        if (isSelecting)
+        {
+            PlaceTower();
+            Debug.Log("Placing Tower");
+        }
 
         if (horizontalAxis > 0.5f && verticalAxis > 0.5f && !isHorizontalAxisInUse && !isVerticalAxisInUse)
         {
@@ -103,9 +119,12 @@ public class PlayerController : MonoBehaviour {
 
         if (verticalAxis == 0)
             isVerticalAxisInUse = false;
+       
 
     }
 
+
+    #region Movement Functions
     void MoveNE()
     {
         CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y - 1, CurrentPosition.z + 1);
@@ -141,14 +160,42 @@ public class PlayerController : MonoBehaviour {
         CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y + 1, CurrentPosition.z - 1);
         Debug.Log("Moving SW" + CurrentPosition);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    void PlaceTower()
+    {
+        if (hasCooledDown)
+        {
+            /*get current tile (use 'CurrentLocation') object
+             *instantiate towerObj at said location
+             * set newly instatiated tower prefab's transform.parent = to that of the tile
+             * apply cooldown
+             * hasCooledDown = false;  
+             * currentCooldownTime = totalCooldowntime; 
+             */
+
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
     { 
         if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
             if(player == null) return;
 
         GetInputs();
         ProcessInputs();
+
+        if (!hasCooledDown && currentCooldownTime >= 0f)
+        {
+            currentCooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            hasCooledDown = true;
+        }
+
+        
 	}
 }
