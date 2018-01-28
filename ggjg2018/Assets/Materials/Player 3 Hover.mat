@@ -8,12 +8,13 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Player 3 Hover
   m_Shader: {fileID: 4800000, guid: 51161a98727401343af066b5d0593988, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _RENDERING_CUTOUT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
