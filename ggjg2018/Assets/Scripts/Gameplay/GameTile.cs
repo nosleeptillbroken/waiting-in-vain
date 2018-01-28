@@ -146,6 +146,8 @@ public class GameTile : MonoBehaviour
     {
         cell.Elevation = 0;
         Owner = player;
+        ControllingPlayer = player;
+        control = MaxControl;
 
         foreach (HexDirection d in HexDirection.GetValues(typeof(HexDirection)))
         {                    
