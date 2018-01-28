@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour {
     void GetInputs()
     {
         //isSelecting = player.GetButtonDown("ActionA");
+        isSelecting = Input.GetKeyDown(KeyCode.Alpha1);
+
         //verticalAxis = player.GetAxis("MoveVertical");
         //horizontalAxis = player.GetAxis("MoveHorizontal");
 
@@ -98,7 +100,7 @@ public class PlayerController : MonoBehaviour {
             horizontalAxis += 1;
         }
 
-        Debug.Log("(" + horizontalAxis + ", " + verticalAxis + ")");
+        //Debug.Log("(" + horizontalAxis + ", " + verticalAxis + ")");
     }
 
     
@@ -233,8 +235,8 @@ public class PlayerController : MonoBehaviour {
 
     void PlaceTower()
     {
-        if (hasCooledDown)
-        {
+        //if (hasCooledDown)
+        //{
             /*get current tile (use 'CurrentLocation') object
              *instantiate towerObj at said location
              * set newly instatiated tower prefab's transform.parent = to that of the tile
@@ -242,8 +244,9 @@ public class PlayerController : MonoBehaviour {
              * hasCooledDown = false;  
              * currentCooldownTime = totalCooldowntime; 
              */
-
-        }
+            Influencer thisTower = Instantiate(towerObj, currentCell.transform).GetComponent<Influencer>();
+            thisTower.owner = gamePlayerId;
+        //}
     }
 
     // Update is called once per frame
@@ -256,14 +259,14 @@ public class PlayerController : MonoBehaviour {
         GetInputs();
         ProcessInputs();
 
-        if (!hasCooledDown && currentCooldownTime >= 0f)
-        {
-            currentCooldownTime -= Time.deltaTime;
-        }
-        else
-        {
-            hasCooledDown = true;
-        }
+        //if (!hasCooledDown && currentCooldownTime >= 0f)
+        //{
+        //    currentCooldownTime -= Time.deltaTime;
+        //}
+        //else
+        //{
+        //    hasCooledDown = true;
+        //}
 
         
 	}
