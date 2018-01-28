@@ -6,6 +6,7 @@ public struct HexCoordinates
 
     [SerializeField]
     private int x, z;
+    private string positionKey;
 
     public int X
     {
@@ -31,10 +32,16 @@ public struct HexCoordinates
         }
     }
 
+    public string GetPositionKey()
+    {
+        return positionKey;
+    }
+
     public HexCoordinates(int x, int z)
     {
         this.x = x;
         this.z = z;
+        positionKey = this.x.ToString() + "." + (-x - z).ToString() + "." + this.z.ToString();
     }
 
     public static HexCoordinates FromOffsetCoordinates(int x, int z)

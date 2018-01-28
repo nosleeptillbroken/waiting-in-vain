@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class HexGrid : MonoBehaviour
 {
+    private GameManager gameManager;
 
     public int width = 6;
     public int height = 6;
@@ -67,6 +68,7 @@ public class HexGrid : MonoBehaviour
 
     void Initialize()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
 
@@ -94,6 +96,7 @@ public class HexGrid : MonoBehaviour
 
                 GameTile gameTile = cells[i].GetComponent<GameTile>();
                 gameTile.OnGenerated(this);
+                gameManager.RegisterTileData(gameTile.GetCell().coordinates.GetPositionKey(), gameTile);
             }
         }
 

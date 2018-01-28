@@ -46,6 +46,11 @@ public class GameTile : MonoBehaviour {
         }
     }
 
+    public HexCell GetCell()
+    {
+        return cell;
+    }
+
     public void OnGenerated (HexGrid grid)
     {
         this.grid = grid;
