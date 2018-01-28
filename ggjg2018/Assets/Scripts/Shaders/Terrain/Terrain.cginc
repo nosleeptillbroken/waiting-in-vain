@@ -70,7 +70,7 @@ float4 fragTerrain (v2f i) : SV_Target
 	float4 col = tex2D(_MainTex, i.uvMain) * ColorMult;
 	
 	#if defined(_ALPHA_CUTOFF)
-		clip(tex2D(_CloudTex, i.worldPos.xz + _Time.r * 5.0).r - (1 - UNITY_ACCESS_INSTANCED_PROP(Props, _CloudCutoff)));
+		clip(tex2D(_CloudTex, i.worldPos.xz * 0.05 + _Time.r * 5.0).r - (1 - UNITY_ACCESS_INSTANCED_PROP(Props, _CloudCutoff)));
 	#endif
 
 	#if defined(_SHINY_RAMP)	

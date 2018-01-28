@@ -17,7 +17,7 @@ public class HexGrid : MonoBehaviour
     Canvas gridCanvas;
     HexMesh hexMesh;
 
-    void Start()
+    void Awake()
     {
         Initialize();
         GenerateLevel();

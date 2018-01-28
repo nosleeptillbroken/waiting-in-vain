@@ -136,7 +136,7 @@ public class TerrainShaderGUI : ShaderGUI
 		editor.ShaderProperty(cutoffSlider, MakeLabel(cutoffSlider));
 		EditorGUI.indentLevel -= 2;
 
-		SetKeyword("_ALPHA_CUTOFF", cutoffSlider.floatValue < 1.0f);
+		SetKeyword("_ALPHA_CUTOFF", cutoffSlider.floatValue > 0.0f);
 		
 
 		//if (shouldShowAlphaCutoff) 
