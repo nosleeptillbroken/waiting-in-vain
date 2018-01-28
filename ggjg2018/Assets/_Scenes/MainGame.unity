@@ -973,9 +973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCard: {fileID: 243442156}
   playerIcons:
-  - {fileID: 21300000, guid: a1c748f32634b67429129e0d64e401ca, type: 3}
-  - {fileID: 21300000, guid: 9642de98c21ed104492d1dceec4ebd48, type: 3}
-  - {fileID: 21300000, guid: 519aa58b6c8dedf468b316d6ac0930d1, type: 3}
+  - {fileID: 21300000, guid: 87be07a6ac576744bb244e3d1e6dcc2c, type: 3}
 --- !u!114 &243442154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1677,9 +1675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCard: {fileID: 390083329}
   playerIcons:
-  - {fileID: 21300000, guid: a1c748f32634b67429129e0d64e401ca, type: 3}
-  - {fileID: 21300000, guid: 9642de98c21ed104492d1dceec4ebd48, type: 3}
-  - {fileID: 21300000, guid: 519aa58b6c8dedf468b316d6ac0930d1, type: 3}
+  - {fileID: 21300000, guid: 87be07a6ac576744bb244e3d1e6dcc2c, type: 3}
 --- !u!114 &390083327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5301,9 +5297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCard: {fileID: 1416716085}
   playerIcons:
-  - {fileID: 21300000, guid: a1c748f32634b67429129e0d64e401ca, type: 3}
-  - {fileID: 21300000, guid: 9642de98c21ed104492d1dceec4ebd48, type: 3}
-  - {fileID: 21300000, guid: 519aa58b6c8dedf468b316d6ac0930d1, type: 3}
+  - {fileID: 21300000, guid: 87be07a6ac576744bb244e3d1e6dcc2c, type: 3}
 --- !u!114 &1416716083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6963,9 +6957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCard: {fileID: 1894354427}
   playerIcons:
-  - {fileID: 21300000, guid: a1c748f32634b67429129e0d64e401ca, type: 3}
-  - {fileID: 21300000, guid: 9642de98c21ed104492d1dceec4ebd48, type: 3}
-  - {fileID: 21300000, guid: 519aa58b6c8dedf468b316d6ac0930d1, type: 3}
+  - {fileID: 21300000, guid: 87be07a6ac576744bb244e3d1e6dcc2c, type: 3}
 --- !u!114 &1894354425
 MonoBehaviour:
   m_ObjectHideFlags: 0
