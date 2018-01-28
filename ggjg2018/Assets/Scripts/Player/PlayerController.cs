@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject hexGridObject;
     private HexGrid hexGrid;
     private HexCell currentCell;
+
+    // This is for debugging and should be removed
     private Color prevColor;
     private Color tempColor = Color.black;
 
@@ -20,6 +22,9 @@ public class PlayerController : MonoBehaviour {
     private float TotalCooldownTime = 3.0f;
     private float currentCooldownTime = 0.0f;
     private bool hasCooledDown = true;
+
+    private float moveTime = 0;
+    public float moveWait = 0.1f;
 
     public GameObject towerObj;
 
@@ -108,44 +113,52 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Placing Tower");
         }
 
-        if (horizontalAxis > 0.5f && verticalAxis > 0.5f && !isHorizontalAxisInUse && !isVerticalAxisInUse)
+        bool canMove = Time.time > moveTime;
+
+        if (horizontalAxis > 0.5f && verticalAxis > 0.5f && canMove)
         {
-            MoveNE();
+            //MoveNE();
+            Move(HexDirection.NE);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
 
-        if (horizontalAxis < -0.5f && verticalAxis > 0.5 && !isHorizontalAxisInUse && !isVerticalAxisInUse)
+        else if (horizontalAxis < -0.5f && verticalAxis > 0.5 && canMove)
         {
-            MoveNW();
+            //MoveNW();
+            Move(HexDirection.NW);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
 
-        if (horizontalAxis < -0.5f && verticalAxis < -0.5f && !isHorizontalAxisInUse && !isVerticalAxisInUse)
+        else if (horizontalAxis < -0.5f && verticalAxis < -0.5f && canMove)
         {
-            MoveSW();
+            //MoveSW();
+            Move(HexDirection.SW);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
 
-        if (horizontalAxis > 0.5f && verticalAxis < -0.5f && !isHorizontalAxisInUse && !isVerticalAxisInUse)
+        else if (horizontalAxis > 0.5f && verticalAxis < -0.5f && canMove)
         {
-            MoveSE();
+            //MoveSE();
+            Move(HexDirection.SE);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
 
-        if (horizontalAxis < -0.5f && !isHorizontalAxisInUse)
+        else if (horizontalAxis < -0.5f && canMove)
         {
-            MoveW();
+            //MoveW();
+            Move(HexDirection.W);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
 
-        if (horizontalAxis > 0.5f && !isHorizontalAxisInUse)
+        else if (horizontalAxis > 0.5f && canMove)
         {
-            MoveE();
+            //MoveE();
+            Move(HexDirection.E);
             isVerticalAxisInUse = true;
             isHorizontalAxisInUse = true;
         }
@@ -163,6 +176,19 @@ public class PlayerController : MonoBehaviour {
 
 
     #region Movement Functions
+
+    private void Move(HexDirection direction)
+    {
+        currentCell.color = prevColor;
+        currentCell = currentCell.GetNeighbor(direction) ?? currentCell;
+        prevColor = currentCell.color;
+        currentCell.color = tempColor;
+        hexGrid.Refresh();
+
+        moveTime = Time.time + moveWait;
+        Debug.Log(direction.ToString() + CurrentPosition);
+    }
+
     void MoveNE()
     {
         currentCell.color = prevColor;
