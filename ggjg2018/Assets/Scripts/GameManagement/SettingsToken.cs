@@ -37,13 +37,13 @@ public class SettingsToken : MonoBehaviour
 
     void Start ()
     {
-        gameLength = GameLength.Medium;
-        gameTime = 900.0f;
-        gridSize = BoardSize.Medium;
-        gridWidth = 21;
-        gridHeight = 25;
-        powerStart = PowerStart.Medium;
-        startingPowerCap = 5;
+        gameLength = GameLength.Short;
+        gameTime = 600.0f;
+        gridSize = BoardSize.Small;
+        gridWidth = 15;
+        gridHeight = 19;
+        powerStart = PowerStart.Low;
+        startingPowerCap = 3;
         uiLayout = UILayout.Vertical;
 	}
 	
@@ -120,5 +120,71 @@ public class SettingsToken : MonoBehaviour
     public void SetUILayout(UILayout ui)
     {
         uiLayout = ui;
+    }
+
+    public void GameLengthDropdown(int x)
+    {
+        switch(x)
+        {
+            case 0:
+                gameLength = GameLength.Short;
+                gameTime = 600.0f;  //10 Minutes.
+                break;
+
+            case 1:
+                gameLength = GameLength.Medium;
+                gameTime = 900.0f;  //15 Minutes.
+                break;
+
+            case 2:
+                gameLength = GameLength.Long;
+                gameTime = 1200.0f; //20 Minutes.
+                break;
+        }
+    }
+
+    public void BoardSizeDropdown(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                gridSize = BoardSize.Small;
+                gridWidth = 15;
+                gridHeight = 19;
+                break;
+
+            case 1:
+                gridSize = BoardSize.Medium;
+                gridWidth = 21;
+                gridHeight = 25;
+                break;
+
+            case 2:
+                gridSize = BoardSize.Large;
+                gridWidth = 25;
+                gridHeight = 29;
+                break;
+        }
+    }
+
+    public void StartingPowerDropdown(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                powerStart = PowerStart.Low;
+                startingPowerCap = 3;
+                break;
+
+            case 1:
+                powerStart = PowerStart.Medium;
+                startingPowerCap = 5;
+                break;
+
+            case 2:
+                powerStart = PowerStart.High;
+                startingPowerCap = 7;
+                break;
+        }
     }
 }
