@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ggjg2018/Assets/Scripts/Gameplay/GameTile.cs.meta
 guid: d4851539fa18be24c9c097f2fe88477d
 timeCreated: 1517075205
+=======
+guid: 6e52736c4e162d248a547153d12f3d9b
+timeCreated: 1517080572
+>>>>>>> feature/MainMenu:ggjg2018/Assets/Scripts/GameManagement/GameManager.cs.meta
 licenseType: Free
 MonoImporter:
   externalObjects: {}
