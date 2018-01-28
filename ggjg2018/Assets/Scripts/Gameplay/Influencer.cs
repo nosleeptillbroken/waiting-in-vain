@@ -5,7 +5,6 @@ using UnityEngine;
 public class Influencer : MonoBehaviour {
 
     public int owner;
-
     public int influence;
 
     public HashSet<GameTile> influencedTiles = new HashSet<GameTile>();

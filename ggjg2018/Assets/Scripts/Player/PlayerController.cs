@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     private HexGrid hexGrid;
     private HexCell currentCell;
 
+    [SerializeField] private GameObject influencer;
+
     // This is for debugging and should be removed
     private Color prevColor;
     private Color tempColor = Color.black;
@@ -61,6 +63,8 @@ public class PlayerController : MonoBehaviour {
     void GetInputs()
     {
         //isSelecting = player.GetButtonDown("ActionA");
+        isSelecting = Input.GetKeyDown(KeyCode.Alpha1);
+
         //verticalAxis = player.GetAxis("MoveVertical");
         //horizontalAxis = player.GetAxis("MoveHorizontal");
 
