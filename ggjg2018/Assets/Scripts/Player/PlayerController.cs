@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour {
     //Power Metrics.
     public int currentPower;
     public int maxPower;
+    public int powerDenom = 10;
+    public int basePower = 5;
 
     //crucial player variables
     private Rewired.Player player { get { return ControllerAssigner.GetRewiredPlayer(gamePlayerId); } }
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     void Start ()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        currentPower = 1;
 
         if (hexGridObject != null)
         {
@@ -149,25 +152,13 @@ public class PlayerController : MonoBehaviour {
     
     void PlaceTower()
     {
-        //if (hasCooledDown)
-        //{
-        /*get current tile (use 'CurrentLocation') object
-         *instantiate towerObj at said location
-         * set newly instatiated tower prefab's transform.parent = to that of the tile
-         * apply cooldown
-         * hasCooledDown = false;  
-         * currentCooldownTime = totalCooldowntime; 
-         */
-
         GameTile currentTile = gameManager.LookupTileData(currentCell.coordinates.GetPositionKey());
-        if(currentTile.Owner == gamePlayerId && currentTile.GetCell().Elevation == 0 && Time.time > placementCooldown)
+        if(currentTile.Owner == gamePlayerId && currentTile.GetCell().Elevation == 0 && Time.time > placementCooldown && currentPower < maxPower && currentTile.Tower == null)
         {
             placementCooldown = Time.time + cooldownTime;
             currentTile.Tower = Instantiate(towerObj, currentCell.transform);
+            currentPower++;
         }
-
-        
-        //}
     }
 
     // Update is called once per frame
@@ -175,20 +166,10 @@ public class PlayerController : MonoBehaviour {
     { 
         if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
            if(player == null) return;
-        //
-        //Debug.Log("Are we even fucking running?");
+        
         GetInputs();
         ProcessInputs();
 
-        //if (!hasCooledDown && currentCooldownTime >= 0f)
-        //{
-        //    currentCooldownTime -= Time.deltaTime;
-        //}
-        //else
-        //{
-        //    hasCooledDown = true;
-        //}
-
-        
+        maxPower = (int)(gameManager.GetTotalTiles(gamePlayerId) / powerDenom) + basePower;
 	}
 }
