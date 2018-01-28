@@ -20,6 +20,11 @@ public class SettingsToken : MonoBehaviour
     public bool sfxOn = true;
     public UILayout uiLayout;
 
+    //Scoring Metrics.
+    public int[] towersPlaced = new int[4];
+    public int[] totalTiles = new int[4];
+    public bool[] peakPower = new bool[4];
+
     //Singleton Instance.
     void Awake()
     {
