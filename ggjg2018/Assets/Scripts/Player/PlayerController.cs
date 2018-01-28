@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject hexGridObject;
     private HexGrid hexGrid;
+    private HexCell currentCell;
+    private Color prevColor;
+    private Color tempColor = Color.black;
 
     //Timing variables
     private float TotalCooldownTime = 3.0f;
@@ -22,9 +25,8 @@ public class PlayerController : MonoBehaviour {
 
     //crucial player variables
     private Rewired.Player player { get { return ControllerAssigner.GetRewiredPlayer(gamePlayerId); } }
-    public Vector3 CurrentPosition { get; private set; }
+    public HexCoordinates CurrentPosition { get; private set; }
     public int TotalTiles { get; private set; }
-
 
     //input variables
     private bool isSelecting;
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     private bool isVerticalAxisInUse = false;
     private bool isHorizontalAxisInUse = false;
 
-    void Awake ()
+    void Start ()
     {
         if (hexGridObject != null)
         {
@@ -44,7 +46,10 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("HexGridObject reference is null!");
         }
 
-        CurrentPosition = new Vector3(hexGrid.GetPlayerStartCoordinate(gamePlayerId).X, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Y, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Z);
+        //CurrentPosition = new Vector3(hexGrid.GetPlayerStartCoordinate(gamePlayerId).X, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Y, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Z);\
+        CurrentPosition = hexGrid.GetPlayerStartCoordinate(gamePlayerId);
+        currentCell = hexGrid.GetCell(CurrentPosition);
+        prevColor = currentCell.color;
         Debug.Log("Current Position for player " + gamePlayerId + ": " +  CurrentPosition);
 
        
@@ -53,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 
     void GetInputs()
     {
-        isSelecting = player.GetButtonDown("Select");
+        isSelecting = player.GetButtonDown("ActionA");
         verticalAxis = player.GetAxis("MoveVertical");
         horizontalAxis = player.GetAxis("MoveHorizontal");
     }
@@ -127,37 +132,40 @@ public class PlayerController : MonoBehaviour {
     #region Movement Functions
     void MoveNE()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y - 1, CurrentPosition.z + 1);
-        Debug.Log("Moving NE" + CurrentPosition);
+        currentCell.color = prevColor;
+        currentCell = currentCell.GetNeighbor(HexDirection.NE) ?? currentCell;
+        prevColor = currentCell.color;
+        currentCell.color = tempColor;
+        Debug.Log(HexDirection.NE.ToString() + CurrentPosition);
     }
 
     void MoveNW()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z + 1);
+       // CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z + 1);
         Debug.Log("Moving NW" + CurrentPosition);
     }
 
     void MoveW()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z);
+       // CurrentPosition = new Vector3(CurrentPosition.x - 1, CurrentPosition.y, CurrentPosition.z);
         Debug.Log("Moving W" + CurrentPosition);
     }
 
     void MoveE()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z);
+       // CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z);
         Debug.Log("Moving E" + CurrentPosition);
     }
 
     void MoveSE()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z - 1);
+       // CurrentPosition = new Vector3(CurrentPosition.x + 1, CurrentPosition.y, CurrentPosition.z - 1);
         Debug.Log("Moving SE" + CurrentPosition);
     }
 
     void MoveSW()
     {
-        CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y + 1, CurrentPosition.z - 1);
+      //  CurrentPosition = new Vector3(CurrentPosition.x, CurrentPosition.y + 1, CurrentPosition.z - 1);
         Debug.Log("Moving SW" + CurrentPosition);
     }
 
