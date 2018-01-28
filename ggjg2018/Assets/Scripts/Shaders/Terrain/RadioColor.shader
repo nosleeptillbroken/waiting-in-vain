@@ -84,8 +84,8 @@
 					
 			
 					float fragDistance = length(i.localPos.xyz);
-					float sonarValue = tex2D(_SonarRamp, fragDistance * 0.25 - _Time.r * 20.0f + offset * 0.05).r;
-					float amount = saturate((fragDistance - (offset.x - offset.y) * 0.5));
+					float sonarValue = tex2D(_SonarRamp, fragDistance * 0.25 - _Time.r * 10.0f + offset * 0.05).r;
+					float amount = saturate((fragDistance - (offset.x - offset.y) * 0.15));
 					sonarValue = sonarValue / (fragDistance * 2.0 + 0.01);
 					
 					col.rgb += sonarValue * _SonarRampColor * unity_ColorSpaceDouble * col.a;

@@ -12,7 +12,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -23,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cloud:
-        m_Texture: {fileID: 2800000, guid: 6d77f15b95753954f9f1e10ba815955f, type: 3}
+        m_Texture: {fileID: 2800000, guid: a08960dd6e8274e7f8fca616e09c48ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7b4e4192f75e9864cb1899ab594e04be, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6adfca3450afbcb469503e5e63b6e7b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -84,4 +84,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainTexColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _SonarRampColor: {r: 0.3137255, g: 0, b: 0, a: 0.5}
-    - uOffsetUVSize: {r: 0.2, g: 0.2, b: 1, a: 1}
+    - uOffsetUVSize: {r: 0.02, g: 0.02, b: 1, a: 1}

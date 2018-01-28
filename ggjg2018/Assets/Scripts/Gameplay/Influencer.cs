@@ -7,7 +7,7 @@ public class Influencer : MonoBehaviour {
     public static Color GetPlayerColor(int p)
     {
         const float none = 0f;
-        const float less = 5f / 16f;
+        const float less = 1f / 16f;
 
         switch (p)
         {
