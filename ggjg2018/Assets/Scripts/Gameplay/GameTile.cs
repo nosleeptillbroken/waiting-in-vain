@@ -50,6 +50,53 @@ public class GameTile : MonoBehaviour
     // current influence values for each player. influence determines the increase or decrease in control depending on the controlling player
     [SerializeField] float[] influence = new float[4]{0f,0f,0f,0f};
 
+    //
+    [SerializeField] int controllingPlayer = -1;
+    // the player currently assuming control of the tile. -1 means neutral
+    public int ControllingPlayer
+    {
+        get
+        {
+            return controllingPlayer;
+        }
+        set
+        {
+            controllingPlayer = (value < 4 && value >= 0) ? value : -1;
+        }
+    }
+
+    // current amount of control
+    [SerializeField] float control = 0f;
+
+    bool isGenerated = false;
+
+    HexCell cell = null;
+    HexGrid grid = null;
+
+    GameObject compoundCollider = null;
+    [SerializeField] GameObject tower = null;
+
+    public GameObject Tower
+    {
+        get
+        {
+            return tower;
+        }
+        set
+        {
+            if (value != tower && tower != null)
+            {
+                Destroy(tower);
+                tower = null;
+            }
+            tower = value;
+            if (tower != null)
+            {
+                tower.transform.position = transform.position;
+            }
+        }
+    }
+
     public float GetInfluence(int i)
     {
         if (i < 0)
@@ -102,31 +149,6 @@ public class GameTile : MonoBehaviour
         return ret;
     }
 
-    //
-    [SerializeField] int controllingPlayer = -1;
-    // the player currently assuming control of the tile. -1 means neutral
-    public int ControllingPlayer
-    {
-        get
-        {
-            return controllingPlayer;
-        }
-        set
-        {
-            controllingPlayer = (value < 4 && value >= 0) ? value : -1;
-        }
-    }
-
-    // current amount of control
-    [SerializeField] float control = 0f;
-
-    bool isGenerated = false;
-
-    HexCell cell = null;
-    HexGrid grid = null;
-
-    GameObject compoundCollider = null;
-
     public void OnGenerated(HexGrid grid)
     {
         this.grid = grid;
@@ -156,6 +178,13 @@ public class GameTile : MonoBehaviour
             {
                 n.Elevation = 0;
             }
+        }
+
+        if (Tower == null)
+        {
+            GameObject towerPrefab = Resources.Load<GameObject>("SpawnTower");
+            Tower = Instantiate<GameObject>(towerPrefab);
+            Tower.GetComponent<Influencer>().owner = player;
         }
     }
 
@@ -210,9 +239,9 @@ public class GameTile : MonoBehaviour
                     control = 0;
                     Owner = -1;
                     ControllingPlayer = -1;
+                    Tower = null;
                 }
             }
-
 
             Transform display = transform.Find("Display");
             if (display != null)
