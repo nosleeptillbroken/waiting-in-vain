@@ -1278,7 +1278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePlayerId: 0
   hexGridObject: {fileID: 1698572289}
-  influencer: {fileID: 0}
   moveWait: 0.1
   towerObj: {fileID: 1853157170769340, guid: 46781741e0408f141946a154c4fa4619, type: 2}
 --- !u!4 &1211021438

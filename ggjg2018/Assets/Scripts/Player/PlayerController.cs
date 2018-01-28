@@ -60,11 +60,10 @@ public class PlayerController : MonoBehaviour {
 
     void GetInputs()
     {
-        //isSelecting = player.GetButtonDown("ActionA");
-        isSelecting = Input.GetKeyDown(KeyCode.Alpha1);
+        isSelecting = player.GetButtonDown("ActionA");
 
-        //verticalAxis = player.GetAxis("MoveVertical");
-        //horizontalAxis = player.GetAxis("MoveHorizontal");
+        verticalAxis = player.GetAxis("MoveVertical");
+        horizontalAxis = player.GetAxis("MoveHorizontal");
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -252,8 +251,8 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     { 
-        //if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
-        //    if(player == null) return;
+        if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
+           if(player == null) return;
         //
         //Debug.Log("Are we even fucking running?");
         GetInputs();
