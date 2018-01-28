@@ -262,7 +262,7 @@ public class GameTile : MonoBehaviour
     {
         float adjustedInfluence = 0f;
 
-        SphereCollider sphCol = influencer.gameObject.GetComponent<SphereCollider>();
+        SphereCollider sphCol = influencer.gameObject.GetComponentInChildren<SphereCollider>();
 
         float dist = Vector3.Distance(sphCol.transform.position, transform.position);
 
