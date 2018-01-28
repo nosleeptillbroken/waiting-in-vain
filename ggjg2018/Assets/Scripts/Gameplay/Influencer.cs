@@ -4,6 +4,31 @@ using UnityEngine;
 
 public class Influencer : MonoBehaviour {
 
+    public static Color GetPlayerColor(int p)
+    {
+        const float none = 0f;
+        const float less = 5f / 16f;
+
+        switch (p)
+        {
+            default:
+                return new Color(less, less, less);
+                break;
+            case 0:
+                return new Color(less, none, none);
+                break;
+            case 1:
+                return new Color(none, none, less);
+                break;
+            case 2:
+                return new Color(less, less, none);
+                break;
+            case 3:
+                return new Color(none, less, none);
+                break;
+        }
+    }
+
     public int owner;
     public int influence;
 
@@ -37,6 +62,12 @@ public class Influencer : MonoBehaviour {
         foreach (GameTile gt in influencedTiles)
         {
             gt.Influence(this);
+        }
+
+        Transform quad = transform.Find("Quad");
+        if (quad != null)
+        {
+            quad.GetComponent<MeshRenderer>().material.SetColor("_SonarRampColor", GetPlayerColor(owner));
         }
     }
 
