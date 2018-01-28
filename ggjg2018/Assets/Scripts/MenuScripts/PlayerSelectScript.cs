@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSelectScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class PlayerSelectScript : MonoBehaviour
+{
+    PlayerToken token = new PlayerToken(1, Color.blue, true);
+
+    public int[] registry;
 }

@@ -20,6 +20,8 @@ public class SettingsToken : MonoBehaviour
     public bool sfxOn = true;
     public UILayout uiLayout;
 
+    
+
     //Singleton Instance.
     void Awake()
     {
@@ -187,4 +189,21 @@ public class SettingsToken : MonoBehaviour
                 break;
         }
     }
+
+}
+
+//Beginning of Player instance set up
+public class PlayerToken
+{
+    public int playerNumber;
+    public Color color;
+    public bool isSignedIn;
+
+    public PlayerToken(int pn, Color c, bool isIn)
+    {
+        playerNumber = pn;
+        color = c;
+        isSignedIn = isIn;
+    }
+
 }
