@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 259387774}
   - component: {fileID: 259387776}
   - component: {fileID: 259387775}
+  - component: {fileID: 259387777}
   m_Layer: 5
   m_Name: PlayerSelect
   m_TagString: Untagged
@@ -316,6 +317,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 259387773}
+--- !u!114 &259387777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259387773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ac6f43a8718e147b2236efdf888e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - {fileID: 582242285}
+  - {fileID: 397410884}
 --- !u!1 &393528202
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +571,6 @@ GameObject:
   - component: {fileID: 606319187}
   - component: {fileID: 606319186}
   - component: {fileID: 606319189}
-  - component: {fileID: 606319190}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -630,17 +644,6 @@ MonoBehaviour:
   audioOn: 1
   sfxOn: 1
   uiLayout: 0
---- !u!114 &606319190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606319185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ac6f43a8718e147b2236efdf888e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &748583278
 GameObject:
   m_ObjectHideFlags: 0

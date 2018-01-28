@@ -1,11 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayerSelectScript : MonoBehaviour
 {
-    PlayerToken token = new PlayerToken(1, Color.blue, true);
+    private static Color blue;
+    public Text[] text;
+    bool readyCheck = false;
+    private Color mc = blue;
 
-    public int[] registry;
+    private void Awake()
+    {
+        //text = GetComponent<Text[]>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            readyCheck = true;
+            text[1].color = mc;
+            
+        }
+    }
+
 }

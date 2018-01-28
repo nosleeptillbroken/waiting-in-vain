@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224236499686860384}
   - component: {fileID: 222451033953667672}
   - component: {fileID: 114868369592812900}
+  - component: {fileID: 114998418228155820}
   m_Layer: 5
   m_Name: PlayerSelect
   m_TagString: Untagged
@@ -155,6 +156,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114998418228155820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018014273103630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2977393f80153f4d97880130d4014cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameLength: 0
+  gameTime: 0
+  gridSize: 0
+  gridWidth: 0
+  gridHeight: 0
+  powerStart: 0
+  startingPowerCap: 0
+  audioOn: 1
+  sfxOn: 1
+  uiLayout: 0
 --- !u!222 &222020279082996642
 CanvasRenderer:
   m_ObjectHideFlags: 1
