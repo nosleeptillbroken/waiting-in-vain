@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     //You can toggle a control map using //  rewiredPlayer.controllers.maps.SetMapsEnabled([value], [control map]);
 
     public int gamePlayerId = 0;
+    private GameManager gameManager;
 
     public GameObject hexGridObject;
     private HexGrid hexGrid;
@@ -19,14 +20,17 @@ public class PlayerController : MonoBehaviour {
     private Color tempColor = Color.black;
 
     //Timing variables
-    private float TotalCooldownTime = 3.0f;
-    private float currentCooldownTime = 0.0f;
-    private bool hasCooledDown = true;
+    public float cooldownTime = 3.0f;
+    private float placementCooldown;
 
     private float moveTime = 0;
     public float moveWait = 0.1f;
 
     public GameObject towerObj;
+
+    //Power Metrics.
+    public int currentPower;
+    public int maxPower;
 
     //crucial player variables
     private Rewired.Player player { get { return ControllerAssigner.GetRewiredPlayer(gamePlayerId); } }
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
         if (hexGridObject != null)
         {
             hexGrid = hexGridObject.GetComponent<HexGrid>();
@@ -80,7 +86,7 @@ public class PlayerController : MonoBehaviour {
 
         bool canMove = Time.time > moveTime;
 
-        if (horizontalAxis > 0.5f && verticalAxis > 0.5f && canMove)
+        if (horizontalAxis >= 0.0f && verticalAxis > 0.5f && canMove)
         {
             //MoveNE();
             Move(HexDirection.NE);
@@ -88,7 +94,7 @@ public class PlayerController : MonoBehaviour {
             isHorizontalAxisInUse = true;
         }
 
-        else if (horizontalAxis < -0.5f && verticalAxis > 0.5 && canMove)
+        else if (horizontalAxis < 0.0f && verticalAxis > 0.5 && canMove)
         {
             //MoveNW();
             Move(HexDirection.NW);
@@ -96,7 +102,7 @@ public class PlayerController : MonoBehaviour {
             isHorizontalAxisInUse = true;
         }
 
-        else if (horizontalAxis < -0.5f && verticalAxis < -0.5f && canMove)
+        else if (horizontalAxis <= 0.0f && verticalAxis < -0.5f && canMove)
         {
             //MoveSW();
             Move(HexDirection.SW);
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour {
             isHorizontalAxisInUse = true;
         }
 
-        else if (horizontalAxis > 0.5f && verticalAxis < -0.5f && canMove)
+        else if (horizontalAxis > 0.0f && verticalAxis < -0.5f && canMove)
         {
             //MoveSE();
             Move(HexDirection.SE);
@@ -145,15 +151,22 @@ public class PlayerController : MonoBehaviour {
     {
         //if (hasCooledDown)
         //{
-            /*get current tile (use 'CurrentLocation') object
-             *instantiate towerObj at said location
-             * set newly instatiated tower prefab's transform.parent = to that of the tile
-             * apply cooldown
-             * hasCooledDown = false;  
-             * currentCooldownTime = totalCooldowntime; 
-             */
-            Influencer thisTower = Instantiate(towerObj, currentCell.transform).GetComponent<Influencer>();
-            thisTower.owner = gamePlayerId;
+        /*get current tile (use 'CurrentLocation') object
+         *instantiate towerObj at said location
+         * set newly instatiated tower prefab's transform.parent = to that of the tile
+         * apply cooldown
+         * hasCooledDown = false;  
+         * currentCooldownTime = totalCooldowntime; 
+         */
+
+        GameTile currentTile = gameManager.LookupTileData(currentCell.coordinates.GetPositionKey());
+        if(currentTile.Owner == gamePlayerId && currentTile.GetCell().Elevation == 0 && Time.time > placementCooldown)
+        {
+            placementCooldown = Time.time + cooldownTime;
+            currentTile.Tower = Instantiate(towerObj, currentCell.transform);
+        }
+
+        
         //}
     }
 

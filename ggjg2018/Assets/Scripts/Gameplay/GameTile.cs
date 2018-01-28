@@ -93,6 +93,7 @@ public class GameTile : MonoBehaviour
             if (tower != null)
             {
                 tower.transform.position = transform.position;
+                tower.GetComponent<Influencer>().owner = owner;     //may need to address this.
             }
         }
     }
