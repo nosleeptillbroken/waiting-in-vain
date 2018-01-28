@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4157354594201644}
   - component: {fileID: 33896658613259948}
   - component: {fileID: 23364586759683012}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4326600762684906}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Player 2 Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
