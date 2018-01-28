@@ -180,7 +180,16 @@ MonoBehaviour:
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 2
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 1
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 0
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 1
@@ -198,7 +207,16 @@ MonoBehaviour:
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 2
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 0
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 1
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
@@ -216,7 +234,16 @@ MonoBehaviour:
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 2
+        _layoutId: 0
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      - _enabled: 1
+        _categoryId: 1
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
@@ -234,7 +261,16 @@ MonoBehaviour:
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 1
+        _layoutId: 0
+      - _enabled: 0
+        _categoryId: 0
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
@@ -251,7 +287,7 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 0
     - _id: 1
-      _name: ActionB
+      _name: JoinGame
       _type: 1
       _descriptiveName: player uses this to specify that they want to play
       _positiveDescriptiveName: 
@@ -483,18 +519,7 @@ MonoBehaviour:
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 49
-        _modifierKey1: 0
-        _modifierKey2: 0
-        _modifierKey3: 0
-      - _actionCategoryId: 0
-        _actionId: 1
-        _elementType: 1
-        _elementIdentifierId: -1
-        _axisRange: 0
-        _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 50
+        _keyboardKeyCode: 13
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -586,6 +611,31 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+    - id: 1
+      categoryId: 2
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 0
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 13
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+    - id: 2
+      categoryId: 1
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 0
+      actionElementMaps: []
     mouseMaps: []
     customControllerMaps: []
     customControllers: []
@@ -599,7 +649,7 @@ MonoBehaviour:
     mouseLayoutIdCounter: 1
     customControllerLayoutIdCounter: 1
     joystickMapIdCounter: 3
-    keyboardMapIdCounter: 1
+    keyboardMapIdCounter: 3
     mouseMapIdCounter: 0
     customControllerMapIdCounter: 0
     customControllerIdCounter: 0
