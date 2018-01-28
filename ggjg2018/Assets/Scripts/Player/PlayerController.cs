@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour {
     private HexCell currentCell;
 
     // This is for debugging and should be removed
-    private Color prevColor;
-    private Color tempColor = Color.black;
+    //private Color prevColor;
+    //private Color tempColor = Color.black;
 
     //Timing variables
     private float TotalCooldownTime = 3.0f;
@@ -54,7 +54,9 @@ public class PlayerController : MonoBehaviour {
         //CurrentPosition = new Vector3(hexGrid.GetPlayerStartCoordinate(gamePlayerId).X, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Y, hexGrid.GetPlayerStartCoordinate(gamePlayerId).Z);\
         CurrentPosition = hexGrid.GetPlayerStartCoordinate(gamePlayerId);
         currentCell = hexGrid.GetCell(CurrentPosition);
-        prevColor = currentCell.color;
+
+        //prevColor = currentCell.color;
+
         Debug.Log("Current Position for player " + gamePlayerId + ": " +  CurrentPosition);
 	}
 
@@ -131,10 +133,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Move(HexDirection direction)
     {
-        currentCell.color = prevColor;
+        //currentCell.color = prevColor;
         currentCell = currentCell.GetNeighbor(direction) ?? currentCell;
-        prevColor = currentCell.color;
-        currentCell.color = tempColor;
+        //prevColor = currentCell.color;
+        //currentCell.color = tempColor;
         hexGrid.Refresh();
 
         moveTime = Time.time + moveWait;
