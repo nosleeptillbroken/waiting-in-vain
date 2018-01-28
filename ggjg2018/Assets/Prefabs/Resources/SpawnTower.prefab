@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114326250370682140}
   - component: {fileID: 54503505960048922}
   m_Layer: 0
-  m_Name: Influencer
+  m_Name: SpawnTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
