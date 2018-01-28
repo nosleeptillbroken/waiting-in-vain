@@ -4,6 +4,31 @@ using UnityEngine;
 
 public class GameTile : MonoBehaviour
 {
+    public static Color GetPlayerColor(int p)
+    {
+        const float less = 5f / 16f;
+        const float half = 0.5f;
+
+        switch (p)
+        {
+            default:
+                return new Color(half, half, half);
+                break;
+            case 0:
+                return new Color(half, less, less);
+                break;
+            case 1:
+                return new Color(less, less, half);
+                break;
+            case 2:
+                return new Color(half, half, less);
+                break;
+            case 3:
+                return new Color(less, half, less);
+                break;
+        }
+    }
+
     //
     [SerializeField] int owner = -1;
     // the owner of the tile when it is fully captured. -1 means neutral
@@ -102,28 +127,6 @@ public class GameTile : MonoBehaviour
 
     GameObject compoundCollider = null;
 
-    public Color GetPlayerColor(int player)
-    {
-        switch (player)
-        {
-            case 0:
-                return Color.red;
-                break;
-            case 1:
-                return Color.blue;
-                break;
-            case 2:
-                return Color.yellow;
-                break;
-            case 3:
-                return Color.green;
-                break;
-            default:
-                return (grid != null) ? Color.Lerp(grid.defaultColor, GetPlayerColor(controllingPlayer), ((float)control/(float)MaxControl)) : Color.white;
-                break;
-        }
-    }
-
     public void OnGenerated(HexGrid grid)
     {
         this.grid = grid;
@@ -143,7 +146,8 @@ public class GameTile : MonoBehaviour
     {
         cell.Elevation = 0;
         Owner = player;
-        cell.color = GetPlayerColor(Owner);
+        ControllingPlayer = player;
+        control = MaxControl;
 
         foreach (HexDirection d in HexDirection.GetValues(typeof(HexDirection)))
         {                    
@@ -200,8 +204,6 @@ public class GameTile : MonoBehaviour
                 {
                     control = MaxControl;
                     Owner = ControllingPlayer;
-                    cell.color = GetPlayerColor(Owner);
-                    grid.Refresh();
                 }
                 else if (control <= 0)
                 {
@@ -211,6 +213,14 @@ public class GameTile : MonoBehaviour
                 }
             }
 
+
+            Transform display = transform.Find("Display");
+            if (display != null)
+            {
+                display.GetComponent<MeshRenderer>().material.SetColor("_ColorMult", GetPlayerColor(controllingPlayer));
+                display.GetComponent<MeshRenderer>().material.SetFloat("_CloudCutoff", control / MaxControl);
+            }
+
             influence = new float[4]{0f,0f,0f,0f};
         }
     }
@@ -218,7 +228,6 @@ public class GameTile : MonoBehaviour
     // CHECK THE BELOW FUNCTIONS IF YOU HAVE ISSUES IN THE FUTURE WITH INFLUENCE NOT DISAPPEARING
     // MAY BE ISSUE WITH INFLUENCE VALUE BEING SUBTRACTED ON TRIGGER EXIT BEING DIFFERENT FROM THE INFLUENCE VALUE BEING ADDED ON TRIGGER ENTER
     // FIX BY KEEPING COUNT OF TOWERS CURRENTLY INFLUENCING TILES FOR EACH PLAYER, AND RESET INFLUENCE TO 0 IF NO TOWERS ARE CURRENTLY INFLUENCING
-
 
     float GetInfluenceFromInfluencer(Influencer influencer)
     {

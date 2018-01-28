@@ -32,7 +32,7 @@ public class Influencer : MonoBehaviour {
         }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         foreach (GameTile gt in influencedTiles)
         {
