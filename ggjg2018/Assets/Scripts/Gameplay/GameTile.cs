@@ -251,9 +251,11 @@ public class GameTile : MonoBehaviour
 
             Transform display = transform.Find("Display");
             if (display != null)
-            {
-                display.GetComponent<MeshRenderer>().material.SetColor("_ColorMult", GetPlayerColor(controllingPlayer));
-                display.GetComponent<MeshRenderer>().material.SetFloat("_CloudCutoff", control / MaxControl);
+            {                
+		        MaterialPropertyBlock props = new MaterialPropertyBlock();
+                props.SetColor("_ColorMult", GetPlayerColor(controllingPlayer));
+		        props.SetFloat("_CloudCutoff", control / MaxControl);
+                display.GetComponent<MeshRenderer>().SetPropertyBlock(props);
             }
 
             influence = new float[4]{0f,0f,0f,0f};
