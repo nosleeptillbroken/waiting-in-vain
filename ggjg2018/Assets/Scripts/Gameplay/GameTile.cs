@@ -40,7 +40,19 @@ public class GameTile : MonoBehaviour
         }
         set
         {
+            int previousOwner = owner;
+
             owner = (value < 4 && value >= 0) ? value : -1;
+
+            if (previousOwner != -1 && owner == -1)
+            {
+                gameManager.ChangeTotalTiles(previousOwner, -1);
+            }
+            else if (previousOwner == -1 && owner != -1)
+            {
+                if (gameManager)
+                    gameManager.ChangeTotalTiles(owner, 1);
+            }
         }
     }
 
@@ -87,13 +99,22 @@ public class GameTile : MonoBehaviour
         {
             if (value != tower && tower != null)
             {
+                gameManager.ChangeTowersPlaced(tower.GetComponent<Influencer>().owner, -1);
                 Destroy(tower);
                 tower = null;
             }
+
             tower = value;
+
             if (tower != null)
             {
                 tower.transform.position = transform.position;
+                tower.GetComponent<Influencer>().owner = owner;     //may need to address this.
+
+                if (gameManager)
+                {
+                    gameManager.ChangeTowersPlaced(owner, 1);
+                }
             }
         }
     }
@@ -104,6 +125,11 @@ public class GameTile : MonoBehaviour
             return 0f;
         else
             return influence[i];
+    }
+
+    public HexCell GetCell()
+    {
+        return cell;
     }
 
     public float GetNetInfluence()
@@ -179,13 +205,6 @@ public class GameTile : MonoBehaviour
             {
                 n.Elevation = 0;
             }
-        }
-
-        if (Tower == null)
-        {
-            GameObject towerPrefab = Resources.Load<GameObject>("SpawnTower");
-            Tower = Instantiate<GameObject>(towerPrefab);
-            Tower.GetComponent<Influencer>().owner = player;
         }
     }
 
@@ -295,5 +314,12 @@ public class GameTile : MonoBehaviour
         {
             influence[influencer.owner] += GetInfluenceFromInfluencer(influencer);
         }
+    }
+
+    private GameManager gameManager;
+    public void Start()
+    {
+        Debug.Log("We're in the start.");
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 }

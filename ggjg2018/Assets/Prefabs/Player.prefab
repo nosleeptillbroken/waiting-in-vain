@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114957866287003358}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,5 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePlayerId: 0
   hexGridObject: {fileID: 0}
+  cooldownTime: 3
   moveWait: 0.1
   towerObj: {fileID: 1199521770095748, guid: 086111fef72ee4545834283ddc2f10ef, type: 2}
+  currentPower: 0
+  maxPower: 0
+  powerDenom: 10
+  basePower: 5
