@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 4b4e58e5500cf0c4faea91b1e517961b
-timeCreated: 1517155259
+guid: 4b22e9411febd394a9def66cf4959b1c
+timeCreated: 1517123567
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: default
-    400000: //RootNode
-    400002: default
+    100000: default
+    100002: //RootNode
+    400000: default
+    400002: //RootNode
     2100000: defaultMat
     2300000: default
     3300000: default
     4300000: default
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -44,12 +44,12 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 1
-    addColliders: 1
-    importVisibility: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
