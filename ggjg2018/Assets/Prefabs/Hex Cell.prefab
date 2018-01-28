@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: -1
   MaxControl: 256
+  capturePrefab: {fileID: 1846414700972030, guid: c99bb98bbacaf3b4fb28477efd5ea626,
+    type: 2}
   influence:
   - 0
   - 0
