@@ -1278,6 +1278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePlayerId: 0
   hexGridObject: {fileID: 1698572289}
+  towerObj: {fileID: 0}
 --- !u!4 &1211021438
 Transform:
   m_ObjectHideFlags: 0
@@ -2504,7 +2505,7 @@ MonoBehaviour:
   enableEdgePanning: 0
   edgePanThreshold: 16
   arrowPanSpeed: 32
-  mousePanSpeed: 325
+  mousePanSpeed: 256
   cameraBoundsRestriction: 1
   minimumBounds: {x: 0, y: 0, z: -50}
   maximumBounds: {x: 200, y: 210, z: 150}

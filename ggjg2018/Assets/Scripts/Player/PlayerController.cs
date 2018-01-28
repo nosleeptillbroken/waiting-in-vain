@@ -51,16 +51,49 @@ public class PlayerController : MonoBehaviour {
         currentCell = hexGrid.GetCell(CurrentPosition);
         prevColor = currentCell.color;
         Debug.Log("Current Position for player " + gamePlayerId + ": " +  CurrentPosition);
-
-       
-        
 	}
 
     void GetInputs()
     {
-        isSelecting = player.GetButtonDown("ActionA");
-        verticalAxis = player.GetAxis("MoveVertical");
-        horizontalAxis = player.GetAxis("MoveHorizontal");
+        //isSelecting = player.GetButtonDown("ActionA");
+        //verticalAxis = player.GetAxis("MoveVertical");
+        //horizontalAxis = player.GetAxis("MoveHorizontal");
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            verticalAxis += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            verticalAxis -= 1;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            horizontalAxis += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            horizontalAxis -= 1;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            verticalAxis -= 1;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            verticalAxis += 1;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            horizontalAxis -= 1;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            horizontalAxis += 1;
+        }
+
+        Debug.Log("(" + horizontalAxis + ", " + verticalAxis + ")");
     }
 
     
@@ -136,6 +169,7 @@ public class PlayerController : MonoBehaviour {
         currentCell = currentCell.GetNeighbor(HexDirection.NE) ?? currentCell;
         prevColor = currentCell.color;
         currentCell.color = tempColor;
+        hexGrid.Refresh();
         Debug.Log(HexDirection.NE.ToString() + CurrentPosition);
     }
 
@@ -189,9 +223,10 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     { 
-        if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
-            if(player == null) return;
-
+        //if(!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
+        //    if(player == null) return;
+        //
+        //Debug.Log("Are we even fucking running?");
         GetInputs();
         ProcessInputs();
 
